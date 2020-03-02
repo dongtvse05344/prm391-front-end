@@ -15,6 +15,12 @@ export const environment = {
       product: {
         main: '/api/Product/Admin/',
         byId: '/api/Product/Admin/'
+      },
+      collection: {
+        main: '/api/Collection/',
+      },
+      order: {
+        main: '/api/Order/Admin/',
       }
     },
     extra: {

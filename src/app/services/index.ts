@@ -1,5 +1,9 @@
 // basic-services
 export * from './basic-services/service.service';
+export * from './basic-services/collection.service';
+export * from './basic-services/product.service';
+export * from './basic-services/order.service';
+
 // extra-services
 export * from './extra-services/analytics.service';
 export * from './extra-services/auth.service';

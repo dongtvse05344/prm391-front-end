@@ -18,6 +18,7 @@ const routes: Routes = [
         path: 'shop',
         loadChildren: () => import('src/app/modules/core/modules/shop/shop.module').then(mod => mod.ShopModule)
       },
+     
     ]
   },
 ];
