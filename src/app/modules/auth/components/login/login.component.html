@@ -1,0 +1,44 @@
+<nb-layout windowMode>
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-body>
+                <div class="row h-85">
+                    <div class="col-xl-6 offset-xl-3 col-12">
+                        <div class="text-center">
+                            <img src="assets/main-picture.jpg" style="width: 20rem;">
+                        </div>
+                        <h1 id="title" class="title text-center m-0 shadow-title">W-E-O-Z</h1>
+
+                        <form (ngSubmit)="login()" [formGroup]="loginForm" aria-labelledby="title">
+
+                            <div class="form-control-group">
+                                <label class="label" for="input-username">Username:</label>
+                                <input [formControl]="loginForm.get('username')" nbInput fullWidth name="username" id="input-username" placeholder="username, ex: nguyenvana" fieldSize="large" autofocus [status]="loginForm.get('username').dirty ? (loginForm.get('username').invalid  ? 'danger' : 'success') : ''"
+                                    [attr.aria-invalid]="loginForm.get('username').invalid && loginForm.get('username').touched ? true : null">
+                                <ng-container *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched">
+                                    <p class="caption status-danger" *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty || loginForm.get('username').touched)">
+                                      Username is required !!
+                                    </p>
+                                </ng-container>
+                            </div>
+
+                            <div class="form-control-group">
+                                <label class="label" for="input-password">Password:</label>
+                                <input [formControl]="loginForm.get('password')" nbInput fullWidth name="password" type="password" id="input-password" placeholder="password, ex: 123456" fieldSize="large" [status]="loginForm.get('password').dirty ? (loginForm.get('password').invalid  ? 'danger' : 'success') : ''">
+                                <ng-container *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched ">
+                                    <p class="caption status-danger" *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                                      Password is required !!
+                                    </p>
+                                </ng-container>
+                            </div>
+                            <br>
+                            <button nbButton fullWidth status="primary" size="large" [disabled]="!loginForm.valid" [class.btn-pulse]="!loginForm.valid">
+                                <span><nb-icon [icon]="'log-in'" pack="eva"></nb-icon> Go to home page</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>
