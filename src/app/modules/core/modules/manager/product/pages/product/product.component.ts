@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
   }
   search(textSearch) {
     console.log(textSearch);
-    this.productVs = this.products.filter(p => p.Name.includes(textSearch));
+    this.productVs = this.products.filter(p => p.Name.toLowerCase().includes(textSearch.toLowerCase()));
   }
 
 }

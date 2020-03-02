@@ -1,5 +1,5 @@
 <input nbInput placeholder="Enter name" #inputSearch/>
-<!-- <button nbButton (click)="search(inputSearch.value)">Search</button> -->
+<button nbButton (click)="search(inputSearch.value)">Search</button>
 
 <ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
   [footerHeight]="50" [rowHeight]="'auto'" [rows]="collectionVs" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"

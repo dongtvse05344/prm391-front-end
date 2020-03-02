@@ -22,4 +22,13 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  search(textSearch) {
+    if(textSearch.length ==0) {
+      this.orderVs = this.orders;
+    }
+    else {
+      this.orderVs = this.orders.filter(p => p.Id == textSearch);
+    }
+  }
+
 }

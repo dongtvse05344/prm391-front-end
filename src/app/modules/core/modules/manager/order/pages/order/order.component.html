@@ -1,5 +1,5 @@
 <input nbInput placeholder="Enter Code" #inputSearch/>
-<!-- <button nbButton (click)="search(inputSearch.value)">Search</button> -->
+<button nbButton (click)="search(inputSearch.value)">Search</button>
 
 <ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
   [footerHeight]="50" [rowHeight]="'auto'" [rows]="orderVs" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"
@@ -21,8 +21,11 @@
 </ngx-datatable-column>
   <ngx-datatable-column [name]="'CurrentStatus'" [width]="100" [prop]="'CurrentStatus'">
   <ng-template let-value="value" ngx-datatable-cell-template>
-      <span [class.text-danger]="value" [class.text-success]="!value">
-        {{value  == 1? 'Received' : value == 2 ? 'Doing' : value ==3 ? 'Done' :  'Cancel'}}
+      <span [class.text-danger]="value ==3" 
+      [class.text-success]="value == 2" 
+      [class.text-info]="value ==0" 
+      [class.text-default]="value == 1">
+        {{value  == 0? 'Received' : value == 1 ? 'Doing' : value ==2 ? 'Done' :  'Cancel'}}
     </span>
   </ng-template>
 </ngx-datatable-column>

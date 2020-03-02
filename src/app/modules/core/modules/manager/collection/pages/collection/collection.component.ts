@@ -22,4 +22,9 @@ export class CollectionComponent implements OnInit {
     });
   }
 
+  search(textSearch) {
+    console.log(textSearch);
+    this.collectionVs = this.collections.filter(p => p.Name.toLowerCase().includes(textSearch.toLowerCase()));
+  }
+
 }
