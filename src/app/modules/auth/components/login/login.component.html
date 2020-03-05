@@ -2,12 +2,12 @@
     <nb-layout-column>
         <nb-card>
             <nb-card-body>
-                <div class="row h-85">
-                    <div class="col-xl-6 offset-xl-3 col-12">
-                        <div class="text-center">
-                            <img src="assets/main-picture.jpg" style="width: 20rem;">
-                        </div>
-                        <h1 id="title" class="title text-center m-0 shadow-title">W-E-O-Z</h1>
+                <div class="frame h-85">
+                    <div class="img">
+                        <img src="assets/cover-login-page-1.png" style="width: 38rem;">
+                    </div>
+                    <div class="login-form">
+                        <h1 id="title" class="title text-center m-0 shadow-title">Login</h1>
 
                         <form (ngSubmit)="login()" [formGroup]="loginForm" aria-labelledby="title">
 
@@ -36,6 +36,14 @@
                                 <span><nb-icon [icon]="'log-in'" pack="eva"></nb-icon> Go to home page</span>
                             </button>
                         </form>
+                        <br>
+                        <p style="text-align: center;"><b>OR</b></p>
+                        <button nbButton fullWidth size="medium" id="btnGoogle" class="extra-login">
+                            <nb-icon [icon]="'google'" pack="eva"></nb-icon> Login with Google
+                        </button>
+                        <button nbButton fullWidth size="medium" id="btnFacebook" class="extra-login">
+                            <nb-icon [icon]="'facebook'" pack="eva"></nb-icon> Login with Facebook
+                        </button>
                     </div>
                 </div>
             </nb-card-body>

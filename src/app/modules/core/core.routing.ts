@@ -7,18 +7,13 @@ const routes: Routes = [
     path: '', component: LayoutComponent, children: [
       {
         path: '',
-        redirectTo: 'shop',
+        redirectTo: 'manager',
         pathMatch: 'full'
       },
       {
         path: 'manager',
         loadChildren: () => import('src/app/modules/core/modules/manager/manager.module').then(mod => mod.ManagerModule)
-      },
-      {
-        path: 'shop',
-        loadChildren: () => import('src/app/modules/core/modules/shop/shop.module').then(mod => mod.ShopModule)
-      },
-     
+      }     
     ]
   },
 ];
