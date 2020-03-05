@@ -21,6 +21,12 @@ export const environment = {
       },
       order: {
         main: '/api/Order/Admin/',
+      },
+      category: {
+        main: '/api/Category/'
+      },
+      gender: {
+        main: '/api/Gender/'
       }
     },
     extra: {

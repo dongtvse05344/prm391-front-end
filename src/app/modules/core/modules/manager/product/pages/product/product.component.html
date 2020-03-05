@@ -1,9 +1,15 @@
-<input nbInput placeholder="Enter name" #inputSearch/>
-<button nbButton (click)="search(inputSearch.value)">Search</button>
+<input nbInput placeholder="Enter name" #inputSearch status="info" />
+<button nbButton (click)="search(inputSearch.value)" id="btnSearch">Search</button>
+<nb-select placeholder="Category" status="info" (selectedChange)="onCateChange($event)"> <!-- [(selected)]="selectedItem"-->
+  <nb-option value="0">All</nb-option>
+  <nb-option *ngFor="let cate of categories" [value]="cate.Id">{{ cate.Name }}</nb-option>
+</nb-select>
+<button nbButton id="btnAdd" (click)="openCreateDialog()">Add new Product</button>
+<!-- <button nbButton id="btnDelete">Delete</button> -->
 
 <ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
   [footerHeight]="50" [rowHeight]="'auto'" [rows]="productVs" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"
-  [messages]="{emptyMessage: 'Không có dữ liệu để hiển thị',totalMessage: 'tổng cộng',selectedMessage: 'đã chọn'}">
+  [messages]="{emptyMessage: 'No data to show',totalMessage: 'total products',selectedMessage: 'selected'}">
   <ngx-datatable-column [name]="'Code'" [width]="40" [prop]="'Id'">
   </ngx-datatable-column>
   <ngx-datatable-column [name]="'Name'" [width]="100" [prop]="'Name'">
@@ -19,6 +25,9 @@
       <img src="http://dongtv.hisoft.vn/api/File/Image?imageUrl={{value}}" width="100" height="100" />
     </ng-template>
   </ngx-datatable-column>
+  <ng-template let-value="row">
+    <span><button nbButton id="btnUpdate"><nb-icon icon="edit" status="info"></nb-icon></button></span>
+  </ng-template>
   <!-- <ngx-datatable-column [name]="'Tình trạng'" [width]="100" [prop]="'IsDelete'">
   <ng-template let-value="value" ngx-datatable-cell-template>
       <span [class.text-danger]="value" [class.text-success]="!value">
