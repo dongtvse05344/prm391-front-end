@@ -1,0 +1,10 @@
+#input-cate { float: left;}
+#input-gender { float: right;}
+
+.right {
+    margin-left: 2.5em;
+    textarea { height: 7em;}
+    button { width: 8em; }
+    #btnAdd {float: left;}
+    #btnCancel { float: right;}
+}
