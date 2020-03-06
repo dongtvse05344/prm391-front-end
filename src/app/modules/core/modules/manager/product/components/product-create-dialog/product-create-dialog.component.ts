@@ -6,11 +6,11 @@ import { CategoryService, GenderService } from 'src/app/services';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss']
+  selector: 'app-product-create-dialog',
+  templateUrl: './product-create-dialog.component.html',
+  styleUrls: ['./product-create-dialog.component.scss']
 })
-export class ProductDetailComponent implements OnInit 
+export class ProductCreateDialogComponent implements OnInit 
 {
   createProductForm: FormGroup;
   // newProduct: Product;
@@ -29,7 +29,7 @@ export class ProductDetailComponent implements OnInit
   }
 
   constructor(private categoryService : CategoryService, private genderService : GenderService,
-              private dialogService: NbDialogService, protected dialogRef: NbDialogRef<ProductDetailComponent>,
+              private dialogService: NbDialogService, protected dialogRef: NbDialogRef<ProductCreateDialogComponent>,
               private fb: FormBuilder
   ) { }
 

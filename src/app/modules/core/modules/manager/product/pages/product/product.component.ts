@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService, CategoryService } from 'src/app/services/index';
 import { Product, Category } from 'src/app/view-models';
 import { NbDialogService } from "@nebular/theme";
-import { ProductDetailComponent } from "../../components/product-detail/product-detail.component";
+import { ProductCreateDialogComponent, ProductUpdateDialogComponent } from "../../components";
 
 @Component({
   selector: 'app-product',
@@ -52,7 +52,7 @@ export class ProductComponent implements OnInit
   // Open "Create new product" Form
   openCreateDialog()
   {
-    this.dialogService.open(ProductDetailComponent)
+    this.dialogService.open(ProductCreateDialogComponent)
       .onClose.subscribe(data => {
         this.newProduct = data;
         this.products.push(this.newProduct);

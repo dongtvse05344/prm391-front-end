@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductComponent } from './pages';
-import { ProductDetailComponent } from './components';
+import { ProductCreateDialogComponent, ProductUpdateDialogComponent } from './components';
 import { ProductRoutes } from './product.routing';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxMaskModule } from 'ngx-mask';
@@ -12,7 +12,8 @@ const PAGES = [
   ProductComponent
 ];
 const COMPONENTS = [
-  ProductDetailComponent
+  ProductCreateDialogComponent,
+  ProductUpdateDialogComponent
 ];
 @NgModule({
   imports: [
@@ -30,6 +31,6 @@ const COMPONENTS = [
     NbDialogModule.forChild(),
   ],
   declarations: [...PAGES, ...COMPONENTS],
-  entryComponents: [ProductDetailComponent]
+  entryComponents: [ProductCreateDialogComponent, ProductUpdateDialogComponent]
 })
 export class ProductModule { }
