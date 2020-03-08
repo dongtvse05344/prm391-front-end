@@ -1,9 +1,9 @@
 export class OrderVM {
-    Id: number;
-    DateCreated: Date;
-    TotalAmount: number;
-    Address: String;
-    Note: String;
-    CurrentStatus: number;
+    id: number;
+    dateCreated: Date;
+    totalAmount: number;
+    address: String;
+    note: String;
+    currentStatus: number;
 }
   

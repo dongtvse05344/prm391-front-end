@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { NbDialogService, NbDialogRef } from "@nebular/theme";
-import { Product, Category, Gender } from "src/app/view-models";
-import { CategoryService, GenderService } from 'src/app/services';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { NbDialogRef } from "@nebular/theme";
+import { ProductCM, Category, Gender, Color } from "src/app/view-models";
+import { CategoryService, GenderService, ColorService } from 'src/app/services';
 import swal from 'sweetalert2';
 
 @Component({
@@ -16,30 +16,28 @@ export class ProductCreateDialogComponent implements OnInit
   // newProduct: Product;
   categories: Category[] = [];
   genders: Gender[] = [];
-
-  // Error messages when form's fields are not in right format
-  error_messages = {
-    'name': 
-      {type: 'required', message: 'Product name is required.'}
-    ,
-    'price': [
-      {type: 'required', message: 'Product price is required.'},
-      {type: 'pattern', message: 'Price must be a positive number.'}
-    ]
-  }
+  colors: Color[] = [];
+  colorIds: number[] = [];
+  fileToUpload: File = null;
+  imgPath: string;
 
   constructor(private categoryService : CategoryService, private genderService : GenderService,
-              private dialogService: NbDialogService, protected dialogRef: NbDialogRef<ProductCreateDialogComponent>,
+              private colorService : ColorService,
+              protected dialogRef: NbDialogRef<ProductCreateDialogComponent>,
               private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this.createProductForm = this.fb.group({
-      name: new FormControl('', Validators.compose([Validators.required])),
-      price: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.min(0)
-      ]))
+      name: new FormControl(),
+      currentPrice: new FormControl(),
+      oldPrice: new FormControl(),
+      isSale: new FormControl(),
+      description: new FormControl(),
+      colorIds: new FormControl(),
+      genderId: new FormControl(),
+      categoryId: new FormControl(),
+      bannerPath: new FormControl()
     });
 
     this.categoryService.getAll().then((res) => {
@@ -48,39 +46,43 @@ export class ProductCreateDialogComponent implements OnInit
     this.genderService.getAll().then((res) => {
       this.genders = res;
     });
+    this.colorService.getAll().then((res) => {
+      this.colors = res;
+    });
   }
 
   add()
   {
+    console.log("Date now: ", Date.now());
     if (this.createProductForm.valid) 
     {
-      console.log("Add product here");
-      // this.authService.login(this.loginForm.value)
-      //   .then(
-      //     (res) => {
-      //       this.globalService.setToken(res, this.loginForm.value.username);
-      //       this.router.navigateByUrl('auth/navigate');
-      //     }
-      //   ).catch(
-      //     (e) => swal.fire(
-      //       e.error.message,
-      //       'Please check again!',
-      //       'error'
-      //     )
-      //   );
-    }
-    else {
-      console.log("Error: Add product failed");
-      swal.fire(
-        'Data input is not valid.',
-        'Please check validation!',
-        'error'
-      );
+      let newProduct : ProductCM = {
+        name: this.createProductForm.get('name').value,
+        description: this.createProductForm.get('description').value,
+        currentPrice: this.createProductForm.get('currentPrice').value,
+        oldPrice: this.createProductForm.get('oldPrice').value,
+        isSale: this.createProductForm.get('isSale').value != null ? this.createProductForm.get('isSale').value != null : false,
+        colorIds: this.createProductForm.get('colorIds').value,
+        genderId: this.createProductForm.get('genderId').value,
+        categoryId: this.createProductForm.get('categoryId').value,
+        dateSale: new Date(Date.now())
+      }
+      console.log("Date now: ", new Date(Date.now()));
+      this.dialogRef.close(newProduct);
     }
   }
 
   close()
   {
     this.dialogRef.close();
+  }
+
+  // Get new image
+  handleFileInput(files: FileList) 
+  {
+    this.fileToUpload = files.item(0);
+    this.imgPath = "files/images/products/" + this.fileToUpload.name;
+    this.createProductForm.get("bannerPath").setValue(this.imgPath);
+    console.log("File upload name: ", this.createProductForm.get("bannerPath").value);
   }
 }

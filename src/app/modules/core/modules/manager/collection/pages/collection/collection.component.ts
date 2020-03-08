@@ -24,7 +24,7 @@ export class CollectionComponent implements OnInit {
 
   search(textSearch) {
     console.log(textSearch);
-    this.collectionVs = this.collections.filter(p => p.Name.toLowerCase().includes(textSearch.toLowerCase()));
+    this.collectionVs = this.collections.filter(p => p.name.toLowerCase().includes(textSearch.toLowerCase()));
   }
 
 }

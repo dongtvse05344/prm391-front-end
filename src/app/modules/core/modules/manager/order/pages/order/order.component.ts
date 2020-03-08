@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit {
       this.orderVs = this.orders;
     }
     else {
-      this.orderVs = this.orders.filter(p => p.Id == textSearch);
+      this.orderVs = this.orders.filter(p => p.id == textSearch);
     }
   }
 

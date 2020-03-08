@@ -27,6 +27,9 @@ export const environment = {
       },
       gender: {
         main: '/api/Gender/'
+      },
+      color: {
+        main: '/api/Color/'
       }
     },
     extra: {

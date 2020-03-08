@@ -1,5 +1,5 @@
 // Products model for View (like DTO in Java)
-export class Product {
+export class ProductVM {
   Id: number;
   Name: string;
   Description: string;
@@ -8,4 +8,17 @@ export class Product {
   IsSale: boolean;
   BannerPath: string;
   Star: number;
+}
+
+// Products model for Create
+export class ProductCM {
+  name: string;
+  description: string;
+  currentPrice: number;
+  oldPrice: number;
+  isSale: boolean;
+  colorIds: number[];
+  genderId: number;
+  categoryId: number;
+  dateSale: Date;
 }

@@ -1,0 +1,36 @@
+.left { 
+    width: 20em;
+    #input-id { 
+        width: 3.1em; 
+        float: left;
+        #txtId { 
+            padding-left: 0.3em; 
+            padding-right: 0.3em;
+            text-align: center;
+        }
+    }
+    #input-name { 
+        width: 16em;
+        float: right;
+        input {
+            padding-left: 0.3em; 
+            padding-right: 0.3em;
+        }
+    }
+    #input-current { width: 8em; float: left;}
+    #input-old { width: 8em; float: right;}
+    #chk-saled { margin-top: 5em;}
+}
+
+.right {
+    margin-left: 2.5em;
+    #cb-cate, #cb-gender { width: 8em;}
+    textarea { 
+        height: 7em;
+        padding-left: 0.3em; 
+        padding-right: 0.3em;
+    }
+    button { width: 8em; }
+    #btnAdd {float: left;}
+    #btnCancel { float: right;}
+}

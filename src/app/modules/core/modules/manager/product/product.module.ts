@@ -6,7 +6,7 @@ import { ProductCreateDialogComponent, ProductUpdateDialogComponent } from './co
 import { ProductRoutes } from './product.routing';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxMaskModule } from 'ngx-mask';
-import { NbInputModule, NbButtonModule, NbDialogModule, NbSelectModule, NbIconModule, NbCardModule } from '@nebular/theme';
+import { NbInputModule, NbButtonModule, NbDialogModule, NbSelectModule, NbIconModule, NbCardModule, NbCheckboxModule } from '@nebular/theme';
 
 const PAGES = [
   ProductComponent
@@ -24,6 +24,7 @@ const COMPONENTS = [
     NbInputModule,
     NbButtonModule,
     NbSelectModule,
+    NbCheckboxModule,
     NbIconModule,
     NbCardModule,
     NgxDatatableModule,

@@ -1,56 +1,68 @@
 <nb-card status="info" accent="primary">
   <nb-card-header>Create new Product</nb-card-header>
   <nb-card-body>
-    <form (ngSubmit)="create()" [formGroup]="createProductForm" aria-labelledby="title">
+    <form (ngSubmit)="add()" [formGroup]="createProductForm" aria-labelledby="title">
       <div class="left" style="float: left;">
         <div class="form-control-group">
-          <label class="label" for="txtName">Name*:</label>
-          <input [formControl]="createProductForm.get('name')" nbInput fullWidth name="name" id="txtName" placeholder="Product Name" [status]="createProductForm.get('name').dirty ? (createProductForm.get('name').invalid  ? 'danger' : 'success') : ''"
-              [attr.aria-invalid]="createProductForm.get('name').invalid && createProductForm.get('name').touched ? true : null">
-          <ng-container *ngIf="createProductForm.get('name').invalid && createProductForm.get('name').touched">
-            <p class="caption status-danger" *ngIf="createProductForm.get('name').invalid && (createProductForm.get('name').dirty || createProductForm.get('name').touched)">
-              {{ error_messages.name.message }}
-            </p>
-          </ng-container>
+          <label class="label" for="txtName">Name:</label>
+          <input formControlName="name" nbInput fullWidth id="txtName" placeholder="Product Name">
+        </div>
+
+        <div class="form-control-group" id="input-current">
+          <label class="label" for="txtCurrentPrice">Current Price:</label>
+          <input formControlName="currentPrice" nbInput fullWidth type="number" id="txtCurrentPrice">
+        </div>
+  
+        <div class="form-control-group" id="input-old">
+          <label class="label" for="txtOldPrice">Old Price:</label>
+          <input formControlName="oldPrice" nbInput fullWidth type="number" id="txtOldPrice">
+        </div>
+        
+        <div class="form-control-group" id="chk-saled">
+          <nb-checkbox formControlName="isSale">Is saled</nb-checkbox>
         </div>
   
         <div class="form-control-group">
-          <label class="label" for="txtPrice">Price*:</label>
-          <input [formControl]="createProductForm.get('price')" nbInput fullWidth name="price" type="number" id="txtPrice" placeholder="Product Price" [status]="createProductForm.get('price').dirty ? (createProductForm.get('price').invalid  ? 'danger' : 'success') : ''">
-          <ng-container *ngIf="createProductForm.get('price').invalid && createProductForm.get('price').touched">
-            <ng-container *ngFor="let error of error_messages.price">
-              <span class="caption status-danger" *ngIf="createProductForm.get('price').invalid && (createProductForm.get('price').dirty || createProductForm.get('price').touched)">
-                {{ error.message }}
-              </span><br>
-            </ng-container>
-          </ng-container>
+          <label class="label" for="cbColor">Color:</label><br>
+          <nb-select multiple placeholder="Color" formControlName="colorIds" id="cbColor">
+            <nb-option *ngFor="let c of colors" [value]="c.Id">
+              {{ c.Name }}
+            </nb-option>
+          </nb-select>
         </div>
-  
-        <div class="form-control-group" id="input-cate">
-          <label class="label" for="cbCategory">Category*:</label><br>
-          <nb-select placeholder="Category" [formControl]="createProductForm.get('des')" name="des" id="cbCategory">
+
+        <div class="form-control-group" style="float: left;">
+          <label class="label" for="cbCategory">Category:</label><br>
+          <nb-select placeholder="Category" formControlName="categoryId" id="cbCategory">
             <nb-option *ngFor="let cate of categories" [value]="cate.Id">{{ cate.Name }}</nb-option>
           </nb-select>
         </div>
   
-        <div class="form-control-group" id="input-gender">
-          <label class="label" for="cbGender">Gender*:</label><br>
-          <nb-select placeholder="Gender" [formControl]="createProductForm.get('gender')" name="gender" id="cbGender">
+        <div class="form-control-group" style="float: right;">
+          <label class="label" for="cbGender">Gender:</label><br>
+          <nb-select placeholder="Gender" formControlName="genderId" id="cbGender">
             <nb-option *ngFor="let gender of genders" [value]="gender.Id">{{ gender.Name }}</nb-option>
           </nb-select>
         </div>
+
       </div>
 
-      <div class="right" style="float: right;">
+      <div class="right" style="float: right; width: 22em;">
+        <div class="form-control-group">
+          <label class="label" for="fImage">Product Image: </label> &nbsp;
+          <input type="file" id="fImage" (change)="handleFileInput($event.target.files)">
+          <input formControlName="bannerPath" nbInput fullWidth id="txtImgPath" placeholder="Image path">
+        </div>
+
         <div class="form-control-group" id="input-des">
           <label class="label" for="txtDes">Description:</label>
-          <textarea [formControl]="createProductForm.get('des')" nbInput fullWidth name="des" id="txtDes" placeholder="Product Description" fieldSize="large"></textarea>
+          <textarea formControlName="description" nbInput fullWidth id="txtDes" placeholder="Product Description" fieldSize="large"></textarea>
         </div>
         <br>
         <button nbButton hero status="primary" [disabled]="!createProductForm.valid" [class.btn-pulse]="!createProductForm.valid" id="btnAdd">
           Add
         </button>
-        <button nbButton hero status="basic" (click)="close()" id="btnCancel">Cancel</button>
+        <button nbButton status="basic" (click)="close()" id="btnCancel">Cancel</button>
       </div>
     </form>
   </nb-card-body>

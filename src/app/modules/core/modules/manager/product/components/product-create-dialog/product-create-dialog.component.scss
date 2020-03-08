@@ -1,10 +1,22 @@
-#input-cate { float: left;}
-#input-gender { float: right;}
+.left { 
+    width: 20em;
+    #txtName {
+        padding-left: 0.3em; 
+        padding-right: 0.3em;
+    }
+    #input-current { width: 8em; float: left;}
+    #input-old { width: 8em; float: right;}
+    #chk-saled { margin-top: 5em;}
+    #cbColor { width: 12em;}
+}
 
 .right {
     margin-left: 2.5em;
-    textarea { height: 7em;}
+    #txtImgPath, textarea {
+        padding-left: 0.3em; 
+        padding-right: 0.3em;}
+    textarea { height: 8em; }
     button { width: 8em; }
-    #btnAdd {float: left;}
-    #btnCancel { float: right;}
+    #btnAdd { float: left; }
+    #btnCancel { float: right; }
 }
