@@ -1,9 +1,12 @@
+import { StatusVM } from './order.status.view-model';
+
 export class OrderVM {
-    id: number;
-    dateCreated: Date;
-    totalAmount: number;
-    address: String;
-    note: String;
-    currentStatus: number;
+    Id: number;
+    DateCreated: Date;
+    TotalAmount: number;
+    Address: String;
+    Note: String;
+    CurrentStatus: number;
+    StatusVMs: StatusVM[];
 }
   

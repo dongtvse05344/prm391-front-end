@@ -29,4 +29,9 @@
     </span>
   </ng-template>
 </ngx-datatable-column>
+<ngx-datatable-column [name]="'Status'" [width]="100" [prop]="'Id'">
+  <ng-template let-value="value" ngx-datatable-cell-template>
+        <button nbButton (click)="updateStatus(value)">Update Status</button>
+  </ng-template>
+</ngx-datatable-column>
 </ngx-datatable>

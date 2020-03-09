@@ -21,6 +21,9 @@ export const environment = {
       },
       order: {
         main: '/api/Order/Admin/',
+        byId: '/api/Order/',
+        status: '/api/Order/UpdateStatus'
+
       },
       category: {
         main: '/api/Category/'
@@ -30,6 +33,9 @@ export const environment = {
       },
       color: {
         main: '/api/Color/'
+      },
+      deliveryStatus: {
+        main: '/api/DeliveryStatus/'
       }
     },
     extra: {

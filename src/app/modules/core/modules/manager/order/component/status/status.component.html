@@ -1,0 +1,23 @@
+<nb-card accent="primary">
+    <nb-card-header>Order Management</nb-card-header>
+    <nb-card-body>
+        <div class="form-control-group" style="float: left;width: 200px;">
+            <label>delivery Status:</label><br>
+            <nb-select  [(ngModel)]="statusId" placeholder="delivery Status" >
+              <nb-option *ngFor="let status of deliveryStatus" [value]="status.Id">{{ status.Name }}</nb-option>
+            </nb-select>
+          </div>
+          <button nbButton (click)="onAddStatus()" style="margin-right: 350px;">Add Status</button>
+          <br/>
+        <ngx-datatable *ngIf="orderVM" style="width: 500px;" class='table table-hover material'   [columnMode]="'force'" [reorderable]="true"
+            [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [rows]="orderVM.StatusVMs" [scrollbarH]="true"
+            [selectionType]="'single'" [limit]="10"
+            [messages]="{emptyMessage: 'Không có dữ liệu để hiển thị',totalMessage: 'tổng cộng',selectedMessage: 'đã chọn'}">
+            <ngx-datatable-column [width]="300" [name]="'Name'" [width]="40" [prop]="'Name'">
+            </ngx-datatable-column>
+            <ngx-datatable-column [name]="'Priority'" [width]="100" [prop]="'Priority'">
+               
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </nb-card-body>
+</nb-card>

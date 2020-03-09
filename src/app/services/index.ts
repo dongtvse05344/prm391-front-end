@@ -5,6 +5,7 @@ export * from './basic-services/order.service';
 export * from './basic-services/category.service';
 export * from './basic-services/gender.service';
 export * from './basic-services/color.service';
+export * from './basic-services/delivery.status.service';
 
 // extra-services
 export * from './extra-services/analytics.service';
