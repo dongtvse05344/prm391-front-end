@@ -7,13 +7,14 @@
 <button nbButton id="btnAdd" (click)="openCreateDialog()" status="basic">
   <nb-icon icon="plus" status="primary"></nb-icon>
 </button>
-<button nbButton id="btnUpdate" (click)="openUpdateDialog()" status="basic">
+<button nbButton id="btnUpdate" (click)="openUpdateDialog()" [disabled]="selectedProduct ==null" status="basic">
   <nb-icon icon="edit" status="primary"></nb-icon>
 </button>
 
 <ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
   [footerHeight]="50" [rowHeight]="'auto'" [rows]="productVs" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"
   [messages]="{emptyMessage: 'No data to show',totalMessage: 'total products',selectedMessage: 'selected'}"
+  
   (select)="onSelect($event)">
   <ngx-datatable-column [name]="'Code'" [width]="40" [prop]="'Id'">
   </ngx-datatable-column>
