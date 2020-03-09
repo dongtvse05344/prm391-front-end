@@ -7,7 +7,7 @@
               <nb-option *ngFor="let status of deliveryStatus" [value]="status.Id">{{ status.Name }}</nb-option>
             </nb-select>
           </div>
-          <button nbButton (click)="onAddStatus()">Add Status</button>
+          <button nbButton (click)="onAddStatus()" [disabled]="orderVM.CurrentStatus == 3 ||orderVM.CurrentStatus == 2">Add Status</button>
           <br/>
         <ngx-datatable *ngIf="orderVM" style="width: 500px;" class='table table-hover material'   [columnMode]="'force'" [reorderable]="true"
             [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [rows]="orderVM.StatusVMs" [scrollbarH]="true"
