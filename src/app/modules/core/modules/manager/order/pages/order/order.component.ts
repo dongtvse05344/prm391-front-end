@@ -15,8 +15,8 @@ export class OrderComponent implements OnInit {
   constructor(private readonly orderService: OrderService,
     private dialogService: NbDialogService
     ) { }
-
-  ngOnInit() {
+  
+  loadData(){
     this.orderService.getAll().then((res) => {
       this.orders = res;
        this.orderVs = res;
@@ -24,6 +24,9 @@ export class OrderComponent implements OnInit {
     .catch(e => {
       console.log(e);
     });
+  }
+  ngOnInit() {
+    this.loadData();
   }
 
   search(textSearch) {
@@ -43,7 +46,7 @@ export class OrderComponent implements OnInit {
   {
     this.dialogService.open(StatusComponent )
       .onClose.subscribe(data => {
-       
+        this.loadData();
       });
     
   }
