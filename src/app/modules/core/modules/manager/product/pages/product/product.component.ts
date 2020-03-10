@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit
   }
 
   // Search products by name
-  search(textSearch : string) {
+  search(textSearch: string) {
     this.productVs = this.products.filter(p => p.Name.toLowerCase().includes(textSearch.toLowerCase()));
   }
 
@@ -59,9 +59,13 @@ export class ProductComponent implements OnInit
   {
     this.dialogService.open(ProductCreateDialogComponent)
       .onClose.subscribe(data => {
-        console.log("Main - After add: ", data);
-        this.productService.create(data).then(() => {
-          this.loadAllProducts(); // Vì ở đây chưa có bannerPath nên sẽ bị báo lỗi 500.
+        this.newProduct = data[0];
+        this.productService.create(this.newProduct).then((res) => {
+          let img = data[1];
+          let proId = res.Id;
+          this.productService.setBannerPath(img, proId).then(() => {
+            this.loadAllProducts();
+          });
         });
       });
     
@@ -73,7 +77,7 @@ export class ProductComponent implements OnInit
     this.dialogService.open(ProductUpdateDialogComponent, { context: { selectedProduct: this.selectedProduct}})
       .onClose.subscribe(data => {
         this.newProduct = data;
-        console.log("Main - After update: ", this.newProduct);
+        // console.log("product.component.ts - After update: ", this.newProduct);
       });
   }
 

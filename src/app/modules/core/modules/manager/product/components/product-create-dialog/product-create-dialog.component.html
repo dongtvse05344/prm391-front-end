@@ -50,7 +50,7 @@
       <div class="right" style="float: right; width: 22em;">
         <div class="form-control-group">
           <label class="label" for="fImage">Product Image: </label> &nbsp;
-          <input type="file" id="fImage" (change)="handleFileInput($event.target.files)">
+          <input type="file" id="fImage" (change)="uploadFile($event.target.files)">
           <input formControlName="bannerPath" nbInput fullWidth id="txtImgPath" placeholder="Image path">
         </div>
 

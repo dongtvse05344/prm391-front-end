@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { NbDialogRef } from "@nebular/theme";
 import { ProductCM, Category, Gender, Color } from "src/app/view-models";
 import { CategoryService, GenderService, ColorService } from 'src/app/services';
-import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-create-dialog',
@@ -53,7 +52,6 @@ export class ProductCreateDialogComponent implements OnInit
 
   add()
   {
-    console.log("Date now: ", Date.now());
     if (this.createProductForm.valid) 
     {
       let newProduct : ProductCM = {
@@ -61,14 +59,13 @@ export class ProductCreateDialogComponent implements OnInit
         description: this.createProductForm.get('description').value,
         currentPrice: this.createProductForm.get('currentPrice').value,
         oldPrice: this.createProductForm.get('oldPrice').value,
-        isSale: this.createProductForm.get('isSale').value != null ? this.createProductForm.get('isSale').value != null : false,
+        isSale: this.createProductForm.get('isSale').value != null ? this.createProductForm.get('isSale').value : false,
         colorIds: this.createProductForm.get('colorIds').value,
         genderId: this.createProductForm.get('genderId').value,
         categoryId: this.createProductForm.get('categoryId').value,
         dateSale: new Date(Date.now())
       }
-      console.log("Date now: ", new Date(Date.now()));
-      this.dialogRef.close(newProduct);
+      this.dialogRef.close([newProduct, this.fileToUpload]);
     }
   }
 
@@ -78,11 +75,11 @@ export class ProductCreateDialogComponent implements OnInit
   }
 
   // Get new image
-  handleFileInput(files: FileList) 
+  uploadFile(files: FileList) 
   {
     this.fileToUpload = files.item(0);
     this.imgPath = "files/images/products/" + this.fileToUpload.name;
     this.createProductForm.get("bannerPath").setValue(this.imgPath);
-    console.log("File upload name: ", this.createProductForm.get("bannerPath").value);
+    console.log("File upload name: ", this.fileToUpload);
   }
 }

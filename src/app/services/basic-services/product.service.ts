@@ -27,7 +27,7 @@ export class ProductService
   }
 
   // Create new product
-  create(product: ProductCM): Promise<ProductCM>
+  create(product: ProductCM): Promise<any>
   {
     // Tại sao dùng body thì bị lỗi nhỉ? Phải dùng trực tiếp là product thì mới chịu
     // const body = new HttpParams()
@@ -41,17 +41,31 @@ export class ProductService
     //   .set('categoryId', product.categoryId + "")
     //   .set('dateSale', product.dateSale + "")
 
-    const reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json'
-      });
-    
-    console.log("API Create Product: " + `${this.apiPaths.endPoint}${this.apiPaths.basic.product.main}`);
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return new Promise(resolve => {
       this.http.post(`${this.apiPaths.endPoint}${this.apiPaths.basic.product.main}`, product, { headers : reqHeader})
-      .subscribe((data : ProductCM) => {
+      .subscribe(data => {
         resolve(data);
-        console.log("Call API successfully.");
+        alert("New Product has been added successfully.");
+      }, error => {
+        console.error('Error at ProductService - create(): ' + JSON.stringify(error));
+      });
+    });
+  }
+
+  // Set BannerPath (image) for the newest product
+  setBannerPath(img: File, id: number) : Promise<any>
+  {
+    let formData = new FormData();
+    formData.append("image", img);
+
+    return new Promise(resolve => {
+      this.http.post(`${this.apiPaths.endPoint}${this.apiPaths.basic.product.img}?id=${id}&isHighlight=true`, formData)
+      .subscribe((data: any) => {
+        resolve(data);
+      }, error => {
+        console.error('Error at ProductService - setBannerPath(): ' + JSON.stringify(error));
       });
     });
   }
