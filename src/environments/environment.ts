@@ -14,7 +14,7 @@ export const environment = {
     basic: {
       product: {
         main: '/api/Product/Admin/',
-        byId: '/api/Product/Admin/',
+        byId: '/api/Product/',
         img: '/api/File/ProductImage'
       },
       collection: {

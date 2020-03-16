@@ -17,20 +17,21 @@
             padding-right: 0.3em;
         }
     }
-    #input-current { width: 8em; float: left;}
-    #input-old { width: 8em; float: right;}
-    #chk-saled { margin-top: 5em;}
+    #input-current { width: 8em; float: left; }
+    #input-old { width: 8em; float: right; }
+    #chk-saled { margin-top: 5em; }
+    #cbColor { width: 12.2em; }
 }
 
 .right {
     margin-left: 2.5em;
-    #cb-cate, #cb-gender { width: 8em;}
+    #cb-cate, #cb-gender { width: 8em; }
     textarea { 
         height: 7em;
         padding-left: 0.3em; 
         padding-right: 0.3em;
     }
     button { width: 8em; }
-    #btnAdd {float: left;}
-    #btnCancel { float: right;}
+    #btnAdd {float: left; }
+    #btnCancel { float: right; }
 }

@@ -2,51 +2,69 @@
   <nb-card-header>Update Product Information</nb-card-header>
   <nb-card-body>
     <form (ngSubmit)="update()" [formGroup]="updateProductForm" aria-labelledby="title">
-      <div class="left" style="float: left;">
+      <div class="left" style="float: left">
         <div class="form-control-group" id="input-id">
           <label class="label" for="txtId">Id:</label>
-          <input formControlName="id" nbInput fullWidth id="txtId" [ngModel]="selectedProduct.Id" readonly>
+          <input formControlName="id" nbInput fullWidth id="txtId" readonly>  <!-- [ngModel]="selectedProduct.id"-->
         </div>
 
         <div class="form-control-group" id="input-name">
           <label class="label" for="txtName">Name:</label>
-          <input formControlName="name" nbInput fullWidth id="txtName" [ngModel]="selectedProduct.Name">
+          <input formControlName="name" nbInput fullWidth id="txtName"> <!-- [ngModel]="selectedProduct.name"-->
         </div>
 
         <div class="form-control-group" id="input-current">
           <label class="label" for="txtCurrentPrice">Current Price:</label>
-          <input formControlName="currentPrice" nbInput fullWidth type="number" id="txtCurrentPrice" [ngModel]="selectedProduct.CurrentPrice">
-          <br>
+          <input formControlName="currentPrice" nbInput fullWidth type="number" id="txtCurrentPrice">
+          <br>    <!-- [ngModel]="selectedProduct.currentPrice"-->
         </div>
   
         <div class="form-control-group" id="input-old">
           <label class="label" for="txtOldPrice">Old Price:</label>
-          <input formControlName="oldPrice" nbInput fullWidth type="number" id="txtOldPrice" [ngModel]="selectedProduct.OldPrice">
-          <br>
+          <input formControlName="oldPrice" nbInput fullWidth type="number" id="txtOldPrice">
+          <br>  <!-- [ngModel]="selectedProduct.oldPrice"-->
         </div>
         
         <div class="form-control-group" id="chk-saled">
           <!-- <label class="label" for="cbIsSale">Saled: </label> -->
-          <nb-checkbox formControlName="isSale" id="ckIsSale" [ngModel]="selectedProduct.IsSale">Is saled</nb-checkbox> <!-- (checkedChange)="toggle($event)"-->
-        </div>
+          <nb-checkbox formControlName="isSale" id="ckIsSale">Is saled</nb-checkbox> <!-- (checkedChange)="toggle($event)"-->
+        </div>  <!-- [ngModel]="selectedProduct.isSale"-->
 
-        <div class="form-control-group">
-          <label class="label" for="fImage">Product Image:</label>
-          <input type="file" id="fImage" (change)="handleFileInput($event.target.files)">
-          <input formControlName="bannerPath" nbInput fullWidth id="txtImgPath" [ngModel]="selectedProduct.BannerPath">
+        <div class="form-control-group" style="width: 15em; float: left;">
+          <label class="label" for="cbColor">Color:</label><br>
+          <!-- <ng-template *ngFor="let sc of colorIds">
+            <p>{{ sc }}</p> -->
+            <nb-select multiple placeholder="Color" formControlName="colorIds" id="cbColor" 
+            >  <!--[(selected)]="selectedColor" [ngModel]="sc" [ngModel]="selectedProduct.colorIds"-->
+              <nb-option *ngFor="let color of colors" [value]="color.Id">
+                {{ color.Name }}
+              </nb-option>
+            </nb-select>
+          <!-- </ng-template> -->
         </div>
       </div>
 
       <div class="right" style="float: right;">
-        <div class="form-control-group">
-          <label class="label" for="txtStar">Star: </label> &nbsp;
-          <span style="color: #3366ff;" id="txtStar"> {{selectedProduct.Star}}</span> / 5
+        <div class="form-control-group" style="float: left;">
+          <label class="label" for="cbCategory">Category:</label><br>
+          <nb-select placeholder="Category" id="cbCategory" formControlName="categoryId"
+           > <!-- [formControl]="categoryId" (selectedChange)="changeTheme($event)" [ngModel]="selectedProduct.CategoryId"-->
+            <nb-option *ngFor="let cate of categories" [value]="cate.Id">{{ cate.Name }}</nb-option>
+          </nb-select>
+        </div>
+  
+        <div class="form-control-group" style="float: right;">
+          <label class="label" for="cbGender">Gender:</label><br>
+          <nb-select placeholder="Gender" formControlName="genderId" id="cbGender"
+          > <!--[(selected)]="selectedProduct.GenderId" [ngModel]="selectedProduct.GenderId"-->  <!--Hiện chưa có genderId-->
+            <nb-option *ngFor="let gender of genders" [value]="gender.Id">{{ gender.Name }}</nb-option>
+          </nb-select>
         </div>
   
         <div class="form-control-group" id="input-des">
           <label class="label" for="txtDes">Description:</label>
           <textarea formControlName="description" nbInput fullWidth id="txtDes" placeholder="Product Description" 
-          fieldSize="large" [ngModel]="selectedProduct.Description"></textarea>
+            fieldSize="large"></textarea> <!-- [ngModel]="selectedProduct.Description"-->
         </div>
         <br>
         <button nbButton hero status="primary" [disabled]="!updateProductForm.valid" [class.btn-pulse]="!updateProductForm.valid" id="btnAdd">

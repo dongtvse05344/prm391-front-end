@@ -8,10 +8,25 @@ export class ProductVM {
   IsSale: boolean;
   BannerPath: string;
   Star: number;
+  CategoryId: number;
 }
 
 // Products model for Create
 export class ProductCM {
+  name: string;
+  description: string;
+  currentPrice: number;
+  oldPrice: number;
+  isSale: boolean;
+  colorIds: number[];
+  genderId: number;
+  categoryId: number;
+  dateSale: Date;
+}
+
+// Products model for Update
+export class ProductUM {
+  id: number;
   name: string;
   description: string;
   currentPrice: number;

@@ -16,5 +16,9 @@ import { Color } from 'src/app/view-models';
     getAll = (): Promise<Color[]> => {
       return this.http.get<Color[]>(`${this.apiPaths.endPoint}${this.apiPaths.basic.color.main}`).toPromise();
     }
-  
+
+    // Get all colors of a product by productId
+    getByProductId = (productID: number): Promise<Color[]> => {
+      return this.http.get<Color[]>(`${this.apiPaths.endPoint}${this.apiPaths.basic.product.byId}${productID}/Color`).toPromise();
+    }
   }

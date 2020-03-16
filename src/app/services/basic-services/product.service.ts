@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProductVM, ProductCM } from 'src/app/view-models';
+import { ProductVM, ProductCM, ProductUM } from 'src/app/view-models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class ProductService
     return this.http.get<ProductVM[]>(`${this.apiPaths.endPoint}${this.apiPaths.basic.product.main}`).toPromise();
   }
 
-  getById = (id: string): Promise<ProductVM[]> => {
+  getById = (id: number): Promise<ProductVM[]> => {
     return this.http.get<ProductVM[]>(`${this.apiPaths.endPoint}${this.apiPaths.basic.product.byId}${id}`).toPromise();
   }
   
@@ -29,18 +29,6 @@ export class ProductService
   // Create new product
   create(product: ProductCM): Promise<any>
   {
-    // Tại sao dùng body thì bị lỗi nhỉ? Phải dùng trực tiếp là product thì mới chịu
-    // const body = new HttpParams()
-    //   .set('name', product.name)
-    //   .set('description', product.description)
-    //   .set('currentPrice', product.currentPrice + "")
-    //   .set('oldPrice', product.oldPrice + "")
-    //   .set('isSale', product.isSale + "")
-    //   .set('colorIds', product.colorIds + "")
-    //   .set('genderId', product.genderId + "")
-    //   .set('categoryId', product.categoryId + "")
-    //   .set('dateSale', product.dateSale + "")
-
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return new Promise(resolve => {
@@ -66,6 +54,21 @@ export class ProductService
         resolve(data);
       }, error => {
         console.error('Error at ProductService - setBannerPath(): ' + JSON.stringify(error));
+      });
+    });
+  }
+
+  // Update a product
+  update(product: ProductUM): Promise<any>
+  {
+    console.log("update API: ", product);
+    return new Promise(resolve => {
+      this.http.put(`${this.apiPaths.endPoint}${this.apiPaths.basic.product.main}`, product)
+      .subscribe((data: any) => {
+        resolve(data);
+        alert("Update product successfully.");
+      }, error => {
+        console.error('Error at ProductService - update(): ' + JSON.stringify(error));
       });
     });
   }

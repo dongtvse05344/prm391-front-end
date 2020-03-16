@@ -1,6 +1,6 @@
 <input nbInput placeholder="Enter name" #inputSearch status="info" />
 <button nbButton (click)="search(inputSearch.value)" id="btnSearch">Search</button>
-<nb-select placeholder="Category" status="info" (selectedChange)="onCateChange($event)"> <!-- [(selected)]="selectedItem"-->
+<nb-select placeholder="Category" status="info" (selectedChange)="onCateChange($event)">
   <nb-option value="0">All</nb-option>
   <nb-option *ngFor="let cate of categories" [value]="cate.Id">{{ cate.Name }}</nb-option>
 </nb-select>
@@ -14,7 +14,6 @@
 <ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
   [footerHeight]="50" [rowHeight]="'auto'" [rows]="productVs" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"
   [messages]="{emptyMessage: 'No data to show',totalMessage: 'total products',selectedMessage: 'selected'}"
-  
   (select)="onSelect($event)">
   <ngx-datatable-column [name]="'Code'" [width]="40" [prop]="'Id'">
   </ngx-datatable-column>
