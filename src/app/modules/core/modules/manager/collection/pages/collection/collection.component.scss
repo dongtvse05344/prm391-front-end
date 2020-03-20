@@ -1,0 +1,20 @@
+input { 
+    margin: 0 0.6em 0.6em 0;
+}
+#btnSearch { margin-right: 0.6em;}
+#btnAdd, #btnUpdate { 
+    float: right; 
+    margin-left: 0.5em; 
+    border: #0095ff 1px solid;
+    background-color: rgb(183, 237, 255);
+}
+
+#btnAdd:hover, #btnUpdate:hover { 
+    background-color: #D7FADD;
+}
+
+#btnUpdate:disabled { 
+    background-color: lightgray;
+    border: darkgrey 1px solid;
+    nb-icon { color: gray;}
+}

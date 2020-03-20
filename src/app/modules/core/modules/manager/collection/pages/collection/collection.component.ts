@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CollectionVM } from 'src/app/view-models';
 import { CollectionService } from 'src/app/services';
+import { NbDialogService } from "@nebular/theme";
 
 @Component({
   selector: 'app-collection',
@@ -10,7 +11,8 @@ import { CollectionService } from 'src/app/services';
 export class CollectionComponent implements OnInit {
   collections: CollectionVM[]= [];
   collectionVs: CollectionVM[]= [];
-  constructor(private collectionService: CollectionService) { }
+  constructor(private collectionService: CollectionService, private dialogService: NbDialogService
+  ) { }
 
   ngOnInit() {
     this.collectionService.getAll().then((res) => {
@@ -22,9 +24,23 @@ export class CollectionComponent implements OnInit {
     });
   }
 
-  search(textSearch) {
-    console.log(textSearch);
-    this.collectionVs = this.collections.filter(p => p.name.toLowerCase().includes(textSearch.toLowerCase()));
+  search(textSearch: string) {
+      this.collectionVs = this.collections.filter(p => p.name.toLowerCase().includes(textSearch.toLowerCase()));
   }
 
+  // Open "Create new collection" Form
+  openCreateDialog()
+  {
+    // this.dialogService.open(ProductCreateDialogComponent)
+    // .onClose.subscribe(data => {
+    //   this.newProduct = data[0];
+    //   this.productService.create(this.newProduct).then((res) => {
+    //     let img = data[1];
+    //     let proId = res.Id;
+    //     this.productService.setBannerPath(img, proId).then(() => {
+    //       this.loadAllProducts();
+    //     });
+    //   });
+    // });
+  }
 }

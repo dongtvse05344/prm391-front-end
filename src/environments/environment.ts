@@ -19,12 +19,12 @@ export const environment = {
       },
       collection: {
         main: '/api/Collection/',
+        img: '/api/File/CollectionImage'
       },
       order: {
         main: '/api/Order/Admin/',
         byId: '/api/Order/',
         status: '/api/Order/UpdateStatus'
-
       },
       category: {
         main: '/api/Category/'

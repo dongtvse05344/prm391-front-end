@@ -1,0 +1,46 @@
+<nb-card status="info" accent="primary">
+    <nb-card-header>Add products into Collection "{{collectionName}}"</nb-card-header>
+    <nb-card-body>
+      <form (ngSubmit)="create()" [formGroup]="createProductForm" aria-labelledby="title">
+        <div class="form-control-group">
+            <label class="label" for="txtName">Name:</label>
+            <input formControlName="name" nbInput fullWidth id="txtName" placeholder="Collection Name">
+        </div>
+
+        <div class="form-control-group" id="input-current">
+            <label class="label" for="txtStartDate">Start Date:</label>
+            <input formControlName="startDate" nbInput fullWidth type="date" id="txtStartDate">
+        </div>
+
+        <div class="form-control-group" id="input-old">
+            <label class="label" for="txtEndDate">End Date:</label>
+            <input formControlName="endDate" nbInput fullWidth type="number" id="txtEndDate">
+        </div>
+        <br>
+        <button nbButton hero status="primary" [disabled]="!createProductForm.valid" [class.btn-pulse]="!createProductForm.valid" id="btnAdd">
+          Add
+        </button>
+        <button nbButton status="basic" (click)="close()" id="btnCancel">Cancel</button>
+      </form>
+
+      
+      <div class="form-control-group" style="float: left; width: 350px; margin-bottom: 0.6em;">
+        <label>Delivery Status:</label><br>
+        <nb-select  [(ngModel)]="statusId" placeholder="Delivery Status" [fullWidth]="true" >
+          <nb-option *ngFor="let status of deliveryStatus" [value]="status.Id">{{ status.Name }}</nb-option>
+        </nb-select>
+      </div>
+      <button nbButton (click)="onAddStatus()" [disabled]="orderVM.CurrentStatus == 3 || orderVM.CurrentStatus == 2" style="float: right;">Add Status</button>
+      <br/>
+      <ngx-datatable *ngIf="orderVM" style="width: 500px;" class='table table-hover material'   [columnMode]="'force'" [reorderable]="true"
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [rows]="orderVM.StatusVMs" [scrollbarH]="true"
+          [selectionType]="'single'" [limit]="10"
+          [messages]="{emptyMessage: 'Không có dữ liệu để hiển thị',totalMessage: 'tổng cộng',selectedMessage: 'đã chọn'}">
+          <ngx-datatable-column [width]="300" [name]="'Name'" [width]="40" [prop]="'Name'">
+          </ngx-datatable-column>
+          <ngx-datatable-column [name]="'Priority'" [width]="100" [prop]="'Priority'">
+             
+          </ngx-datatable-column>
+      </ngx-datatable>
+    </nb-card-body>
+  </nb-card>

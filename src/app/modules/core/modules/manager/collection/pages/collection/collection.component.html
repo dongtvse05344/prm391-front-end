@@ -1,23 +1,40 @@
-<input nbInput placeholder="Enter name" #inputSearch/>
-<button nbButton (click)="search(inputSearch.value)">Search</button>
+<input nbInput placeholder="Enter collection's name" #inputSearch status="info" />
+<button nbButton (click)="search(inputSearch.value)" id="btnSearch">Search</button>
+<button nbButton id="btnAdd" (click)="openCreateDialog()" status="basic">
+  <nb-icon icon="plus" status="primary"></nb-icon>
+</button>
 
 <ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
   [footerHeight]="50" [rowHeight]="'auto'" [rows]="collectionVs" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"
-  [messages]="{emptyMessage: 'Không có dữ liệu để hiển thị',totalMessage: 'tổng cộng',selectedMessage: 'đã chọn'}">
-  <ngx-datatable-column [name]="'Code'" [width]="40" [prop]="'Id'">
+  [messages]="{emptyMessage: 'No collections to show', totalMessage: 'total', selectedMessage: 'selected'}">
+  <ngx-datatable-column [name]="'Code'" [width]="10" [prop]="'Id'">
   </ngx-datatable-column>
-  <ngx-datatable-column [name]="'Name'" [width]="100" [prop]="'Name'">
+  <ngx-datatable-column [name]="'Name'" [width]="80" [prop]="'Name'">
   </ngx-datatable-column>
-  <ngx-datatable-column [name]="'Banner'" [width]="100" [prop]="'Banner'">
+  <ngx-datatable-column [name]="'IsCurrent'" [width]="20" [prop]="'IsCurrent'">
+  </ngx-datatable-column>
+  <ngx-datatable-column [name]="'StartDate'" [width]="30" [prop]="'StartDate'">
     <ng-template let-value="value" ngx-datatable-cell-template>
-      <img src="http://dongtv.hisoft.vn/api/File/Image?imageUrl={{value}}" width="200" height="100" />
+      <span [class.text-primary]="true">
+          {{value | date}}
+      </span>
     </ng-template>
   </ngx-datatable-column>
-  <!-- <ngx-datatable-column [name]="'Tình trạng'" [width]="100" [prop]="'IsDelete'">
-  <ng-template let-value="value" ngx-datatable-cell-template>
-      <span [class.text-danger]="value" [class.text-success]="!value">
-        {{value ? 'Tạm dừng' : 'Đang hoạt động'}}
-    </span>
-  </ng-template>
-</ngx-datatable-column> -->
+  <ngx-datatable-column [name]="'Banner'" [width]="120" [prop]="'Banner'">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      <img src="http://dongtv.hisoft.vn/api/File/Image?imageUrl={{value}}" width="150" height="90" />
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column [name]="'Status'" [width]="20" [prop]="'IsCurrent'">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+        <span [class.text-info]="value" [class.text-success]="!value">
+          {{value ? 'Coming soon' : 'Now'}}
+      </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column [name]="'Detail'" [width]="100" [prop]="'Id'">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      <button nbButton (click)="addProducts(value)">Add Products</button>
+    </ng-template>
+  </ngx-datatable-column>
 </ngx-datatable>
