@@ -1,4 +1,4 @@
-<input nbInput placeholder="Enter name" #inputSearch status="info" />
+<input nbInput placeholder="Enter product name" #inputSearch status="info" />
 <button nbButton (click)="search(inputSearch.value)" id="btnSearch">Search</button>
 <nb-select placeholder="Category" status="info" (selectedChange)="onCateChange($event)">
   <nb-option value="0">All</nb-option>
@@ -24,6 +24,11 @@
   <ngx-datatable-column [name]="'OldPrice'" [width]="100" [prop]="'OldPrice'">
   </ngx-datatable-column>
   <ngx-datatable-column [name]="'IsSale'" [width]="100" [prop]="'IsSale'">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      <span [class.text-success]="value" [class.text-danger]="!value">
+        {{value ? 'Saled' : 'Not saled'}}
+      </span>
+    </ng-template>
   </ngx-datatable-column>
   <ngx-datatable-column [name]="'BannerPath'" [width]="100" [prop]="'BannerPath'">
     <ng-template let-value="value" ngx-datatable-cell-template>

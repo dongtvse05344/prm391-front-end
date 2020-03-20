@@ -74,7 +74,7 @@ export class ProductComponent implements OnInit
   // Update products' information
   openUpdateDialog()
   {
-    this.selectedProduct = this.setSelectedProduct();
+    this.selectedProduct = this.setSelectedProduct();   // (*)
     this.dialogService.open(ProductUpdateDialogComponent, { context: { selectedProduct: this.selectedProduct}})
       .onClose.subscribe(data => {
         if (data != null) // data == null khi bấm nút "Cancel"
@@ -106,7 +106,7 @@ export class ProductComponent implements OnInit
       currentPrice: this.selectedProduct.CurrentPrice,
       oldPrice: this.selectedProduct.OldPrice,
       isSale: this.selectedProduct.IsSale,
-      colorIds: this.getColorsOfAProduct(this.selectedProduct.Id),
+      colorIds: this.getColorsOfAProduct(this.selectedProduct.Id),  // API này bị lấy sau bước (*) nên ko truyền đc qua modal
       categoryId: this.selectedProduct.CategoryId,
       genderId: 1,  // chưa get đc
       description: this.selectedProduct.Description,
@@ -114,13 +114,14 @@ export class ProductComponent implements OnInit
     };
   }
 
-  private getColorsOfAProduct(proID: number) : number[]
+  private getColorsOfAProduct(proID: number) : Color[]
   {
-    let colorIds: number[] = [];
+    let colors: Color[] = [];
     this.colorService.getByProductId(proID).then((res : Color[]) => {
       console.log("List colors: ", res);
+      colors = res;
     });
 
-    return colorIds;
+    return colors;
   }
 }

@@ -47,7 +47,7 @@
       <div class="right" style="float: right;">
         <div class="form-control-group" style="float: left;">
           <label class="label" for="cbCategory">Category:</label><br>
-          <nb-select placeholder="Category" id="cbCategory" formControlName="categoryId"
+          <nb-select placeholder="Category" id="cbCategory" formControlName="categoryId" [(selected)]="categories[2].Id"
            > <!-- [formControl]="categoryId" (selectedChange)="changeTheme($event)" [ngModel]="selectedProduct.CategoryId"-->
             <nb-option *ngFor="let cate of categories" [value]="cate.Id">{{ cate.Name }}</nb-option>
           </nb-select>

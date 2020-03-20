@@ -1,14 +1,14 @@
 <nb-card accent="primary">
     <nb-card-header>Order Management</nb-card-header>
     <nb-card-body>
-        <div class="form-control-group" style="float: left;width: 350px;">
-            <label>delivery Status:</label><br>
-            <nb-select  [(ngModel)]="statusId" placeholder="delivery Status" [fullWidth]="true" >
-              <nb-option *ngFor="let status of deliveryStatus" [value]="status.Id">{{ status.Name }}</nb-option>
-            </nb-select>
-          </div>
-          <button nbButton (click)="onAddStatus()" [disabled]="orderVM.CurrentStatus == 3 ||orderVM.CurrentStatus == 2">Add Status</button>
-          <br/>
+        <div class="form-control-group" style="float: left; width: 350px; margin-bottom: 0.6em;">
+          <label>Delivery Status:</label><br>
+          <nb-select  [(ngModel)]="statusId" placeholder="Delivery Status" [fullWidth]="true" >
+            <nb-option *ngFor="let status of deliveryStatus" [value]="status.Id">{{ status.Name }}</nb-option>
+          </nb-select>
+        </div>
+        <button nbButton (click)="onAddStatus()" [disabled]="orderVM.CurrentStatus == 3 || orderVM.CurrentStatus == 2" style="float: right;">Add Status</button>
+        <br/>
         <ngx-datatable *ngIf="orderVM" style="width: 500px;" class='table table-hover material'   [columnMode]="'force'" [reorderable]="true"
             [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [rows]="orderVM.StatusVMs" [scrollbarH]="true"
             [selectionType]="'single'" [limit]="10"

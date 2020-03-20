@@ -18,12 +18,12 @@ export class ProductUpdateDialogComponent implements OnInit
   // colors: Color[] = [];
 
   // Sao khai báo array dạng này set default selectedCate được mà viết kiểu lấy API lại ko đc nhỉ?
-  categories: Category[] = [
-    {Id: 1, Name: 'Jackets', Logo: 'file/abc'},   // Có phải do 
-    {Id: 2, Name: 'Dresses', Logo: 'file/def'},
-    {Id: 3, Name: 'Jeans', Logo: 'file/lmn'},
-    {Id: 4, Name: 'T-shirts', Logo: 'file/opq'},
-    {Id: 5, Name: 'Shirts', Logo: 'file/xyz'}
+  categories: Category[] = [    // Ko biết có phải do API bất đồng bộ nên nó chạy sau cách này ko
+    {Id: 1, Name: 'Jackets', Logo: 'files/images/categories/jacket.jpg'},
+    {Id: 2, Name: 'Dresses', Logo: 'files/images/categories/dress.jpg'},
+    {Id: 3, Name: 'Jeans', Logo: 'files/images/categories/jean.png'},
+    {Id: 4, Name: 'T-shirts', Logo: 'files/images/categories/t-shirt.png'},
+    {Id: 5, Name: 'Shirts', Logo: 'files/images/categories/shirt.jpg'}
   ];
   genders: Gender[] = [
     {Id: 1, Name: 'Male'},

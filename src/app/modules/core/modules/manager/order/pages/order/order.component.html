@@ -4,9 +4,9 @@
 <ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
   [footerHeight]="50" [rowHeight]="'auto'" [rows]="orderVs" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"
   [messages]="{emptyMessage: 'Không có dữ liệu để hiển thị',totalMessage: 'tổng cộng',selectedMessage: 'đã chọn'}">
-  <ngx-datatable-column [name]="'Code'" [width]="40" [prop]="'Id'">
+  <ngx-datatable-column [name]="'Code'" [width]="20" [prop]="'Id'">
   </ngx-datatable-column>
-  <ngx-datatable-column [name]="'DateCreated'" [width]="100" [prop]="'DateCreated'">
+  <ngx-datatable-column [name]="'DateCreated'" [width]="80" [prop]="'DateCreated'">
   <ng-template let-value="value" ngx-datatable-cell-template>
 
     <span [class.text-success]="true">
@@ -15,11 +15,11 @@
   </ng-template>
 
   </ngx-datatable-column>
-  <ngx-datatable-column [name]="'TotalAmount'" [width]="100" [prop]="'TotalAmount'">
+  <ngx-datatable-column [name]="'TotalAmount'" [width]="30" [prop]="'TotalAmount'">
 </ngx-datatable-column>
-<ngx-datatable-column [name]="'Address'" [width]="100" [prop]="'Address'">
+<ngx-datatable-column [name]="'Address'" [width]="130" [prop]="'Address'">
 </ngx-datatable-column>
-  <ngx-datatable-column [name]="'CurrentStatus'" [width]="100" [prop]="'CurrentStatus'">
+  <ngx-datatable-column [name]="'CurrentStatus'" [width]="40" [prop]="'CurrentStatus'">
   <ng-template let-value="value" ngx-datatable-cell-template>
       <span [class.text-danger]="value ==3" 
       [class.text-success]="value == 2" 
