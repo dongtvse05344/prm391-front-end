@@ -1,12 +1,13 @@
 <input nbInput placeholder="Enter collection's name" #inputSearch status="info" />
 <button nbButton (click)="search(inputSearch.value)" id="btnSearch">Search</button>
-<button nbButton id="btnAdd" (click)="openCreateDialog()" status="basic">
+<button nbButton id="btnCreate" (click)="openCreateDialog()" status="basic">
   <nb-icon icon="plus" status="primary"></nb-icon>
 </button>
 
 <ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
   [footerHeight]="50" [rowHeight]="'auto'" [rows]="collectionVs" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"
-  [messages]="{emptyMessage: 'No collections to show', totalMessage: 'total', selectedMessage: 'selected'}">
+  [messages]="{emptyMessage: 'No collections to show', totalMessage: 'total', selectedMessage: 'selected'}"
+  (select)="onSelect($event)">
   <ngx-datatable-column [name]="'Code'" [width]="10" [prop]="'Id'">
   </ngx-datatable-column>
   <ngx-datatable-column [name]="'Name'" [width]="80" [prop]="'Name'">
@@ -34,7 +35,9 @@
   </ngx-datatable-column>
   <ngx-datatable-column [name]="'Detail'" [width]="100" [prop]="'Id'">
     <ng-template let-value="value" ngx-datatable-cell-template>
-      <button nbButton (click)="addProducts(value)">Add Products</button>
+      <button nbButton (click)="openAddProductsDialog(value)" [disabled]="selectedCollection == null || selectedCollection.Id != value" >
+        Add Products
+      </button>
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>

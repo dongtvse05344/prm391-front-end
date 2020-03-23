@@ -79,12 +79,12 @@ export class ProductUpdateDialogComponent implements OnInit
     //   // this.selectedCategory = this.categories[2];    // Giả sử mặc định là Jeans
     //   // console.log("selectedCategory: ", this.selectedCategory); // Ở đây vẫn lấy đc nhưng lại ko set lên UI đc
     // });
-    this.genderService.getAll().then((res: Gender[]) => {
-      this.genders = res;
-    });
-    this.colorService.getAll().then((res: Color[]) => {
-      this.colors = res;
-    });
+    // this.genderService.getAll().then((res: Gender[]) => {
+    //   this.genders = res;
+    // });
+    // this.colorService.getAll().then((res: Color[]) => {
+    //   this.colors = res;
+    // });
 
     /* Note: 
       1. new FormControl("AAAA") (nbInput) hoặc new FormControl(101) (nbInput type="number") hoặc

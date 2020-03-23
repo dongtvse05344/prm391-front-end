@@ -108,7 +108,7 @@ export class ProductComponent implements OnInit
       isSale: this.selectedProduct.IsSale,
       colorIds: this.getColorsOfAProduct(this.selectedProduct.Id),  // API này bị lấy sau bước (*) nên ko truyền đc qua modal
       categoryId: this.selectedProduct.CategoryId,
-      genderId: 1,  // chưa get đc
+      genderId: this.selectedProduct.GenderId,
       description: this.selectedProduct.Description,
       dateSale: new Date(Date.now())
     };

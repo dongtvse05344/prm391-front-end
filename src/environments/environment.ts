@@ -9,6 +9,7 @@ export const environment = {
   roles: 'weoz-role',
   fullname: 'weoz-fullname',
   apiLink: {
+    // endPoint: 'http://10.0.2.2:58345',
     endPoint: 'http://dongtv.hisoft.vn',
     // endPoint: 'https://vianh-cosmetic-store-be.herokuapp.com',
     basic: {
@@ -18,7 +19,8 @@ export const environment = {
         img: '/api/File/ProductImage'
       },
       collection: {
-        main: '/api/Collection/',
+        main: '/api/Collection',
+        admin: '/api/Collection/Admin',
         img: '/api/File/CollectionImage'
       },
       order: {

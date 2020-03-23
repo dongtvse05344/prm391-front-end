@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CollectionVM } from 'src/app/view-models';
+import { CollectionVM, CollectionCM, CollectionAM } from 'src/app/view-models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CollectionService {
-
+export class CollectionService
+{
+  idSelected : number;
   apiPaths = environment.apiLink;
   constructor(private http: HttpClient) { }
 
@@ -16,15 +17,15 @@ export class CollectionService {
   }
 
   // Create new collection
-  create(collection: CollectionVM): Promise<any>
+  create(collection: CollectionCM): Promise<any>
   {
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return new Promise(resolve => {
-      this.http.post(`${this.apiPaths.endPoint}${this.apiPaths.basic.product.main}`, collection, { headers : reqHeader})
+      this.http.post(`${this.apiPaths.endPoint}${this.apiPaths.basic.collection.admin}`, collection, { headers : reqHeader})
       .subscribe(data => {
         resolve(data);
-        alert("New Collection has been added successfully.");
+        alert("New Collection has been created successfully.");
       }, error => {
         console.error('Error at CollectionService - create(): ' + JSON.stringify(error));
       });
@@ -48,17 +49,17 @@ export class CollectionService {
   }
 
   // Add products into collection
-  addProducts(collection: CollectionVM): Promise<any>
+  addProducts(collection: CollectionAM): Promise<any>
   {
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return new Promise(resolve => {
-      this.http.post(`${this.apiPaths.endPoint}${this.apiPaths.basic.product.main}`, collection, { headers : reqHeader})
+      this.http.post(`${this.apiPaths.endPoint}${this.apiPaths.basic.collection.admin}/Products`, collection, { headers : reqHeader})
       .subscribe(data => {
         resolve(data);
-        alert("New Collection has been added successfully.");
+        alert("Products has been added successfully.");
       }, error => {
-        console.error('Error at CollectionService - create(): ' + JSON.stringify(error));
+        console.error('Error at CollectionService - addProducts(): ' + JSON.stringify(error));
       });
     });
   }
