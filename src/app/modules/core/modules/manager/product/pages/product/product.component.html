@@ -1,8 +1,12 @@
 <input nbInput placeholder="Enter product name" #inputSearch status="info" />
 <button nbButton (click)="search(inputSearch.value)" id="btnSearch">Search</button>
-<nb-select placeholder="Category" status="info" (selectedChange)="onCateChange($event)">
+<nb-select placeholder="Category" status="info" (selectedChange)="searchByCategory($event)">
   <nb-option value="0">All</nb-option>
   <nb-option *ngFor="let cate of categories" [value]="cate.Id">{{ cate.Name }}</nb-option>
+</nb-select>
+<nb-select placeholder="Collection" status="info" (selectedChange)="searchByCollection($event)">
+  <nb-option value="0">All</nb-option>
+  <nb-option *ngFor="let col of collections" [value]="col.Id">{{ col.Name }}</nb-option>
 </nb-select>
 <button nbButton id="btnAdd" (click)="openCreateDialog()" status="basic">
   <nb-icon icon="plus" status="primary"></nb-icon>

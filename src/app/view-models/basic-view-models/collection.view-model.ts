@@ -1,6 +1,6 @@
 export class CollectionVM {
   id: number;
-  name: string;
+  Name: string;
   startDate: string;
   banner: string;
 }

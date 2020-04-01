@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService, CategoryService, ColorService } from 'src/app/services/index';
-import { ProductVM, ProductCM, ProductUM, Category, Color } from 'src/app/view-models';
+import { ProductService, CategoryService, ColorService, CollectionService } from 'src/app/services/index';
+import { ProductVM, ProductCM, ProductUM, Category, Color, CollectionVM } from 'src/app/view-models';
 import { NbDialogService } from "@nebular/theme";
 import { ProductCreateDialogComponent, ProductUpdateDialogComponent } from "../../components";
 
@@ -16,17 +16,23 @@ export class ProductComponent implements OnInit
   products: ProductVM[] = [];  // All products
   productVs: ProductVM[] = []; // List products to show (sort/search )
   categories: Category[] = [];
+  collections: CollectionVM[] = [];
 
   constructor(private productService: ProductService, private categoryService : CategoryService,
-              private colorService: ColorService,
+              private colorService: ColorService, private collectionService: CollectionService,
               private dialogService: NbDialogService) { }
 
   // Load all products while loading page
   ngOnInit() {
     this.loadAllProducts();
+    
     this.categoryService.getAll().then((cate) => {
       this.categories = cate;
     });
+
+    this.collectionService.getAll().then(collections => {
+      this.collections = collections;
+    })
   }
 
   // Load all products
@@ -44,10 +50,22 @@ export class ProductComponent implements OnInit
   }
 
   // Search products by Category
-  onCateChange(event: number) {
+  searchByCategory(event: number) {
     if (event != 0)
     {
       this.productService.getByCategory(event).then(res => {
+        this.productVs = res;
+      });
+    }
+    else  // option = 0 --> All categories
+      this.productVs = this.products;
+  }
+
+  // Search products by Collection
+  searchByCollection(event: number) {
+    if (event != 0)
+    {
+      this.productService.getByCollection(event).then(res => {
         this.productVs = res;
       });
     }

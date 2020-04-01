@@ -25,6 +25,11 @@ export class ProductService
   getByCategory = (id: number): Promise<ProductVM[]> => {
     return this.http.get<ProductVM[]>(`${this.apiPaths.endPoint}${this.apiPaths.basic.category.main}${id}/Product`).toPromise();
   }
+  
+  // Get all products in a collection
+  getByCollection = (id: number): Promise<ProductVM[]> => {
+    return this.http.get<ProductVM[]>(`${this.apiPaths.endPoint}${this.apiPaths.basic.collection.main}/${id}/Product`).toPromise();
+  }
 
   // Create new product
   create(product: ProductCM): Promise<any>

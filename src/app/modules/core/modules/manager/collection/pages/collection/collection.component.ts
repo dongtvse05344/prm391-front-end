@@ -34,9 +34,9 @@ export class CollectionComponent implements OnInit
     });
   }
 
-  // Search products by name
+  // Search collections by name
   search(textSearch: string) {
-      this.collectionVs = this.collections.filter(p => p.name.toLowerCase().includes(textSearch.toLowerCase()));
+      this.collectionVs = this.collections.filter(p => p.Name.toLowerCase().includes(textSearch.toLowerCase()));
   }
 
   // Open "Create new collection" Form
