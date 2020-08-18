@@ -17,7 +17,8 @@ export class CollectionAddProductDialogComponent implements OnInit
   addProductForm: FormGroup;
   products: ProductVM[] = [];
   proIdsSelected: number[] = [];
-
+  productIds: any;
+  
   constructor(private fb: FormBuilder, private productService: ProductService,
               protected dialogRef: NbDialogRef<CollectionAddProductDialogComponent>)
   { }
