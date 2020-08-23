@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { CollectionAM, ProductVM } from 'src/app/view-models';
 import { ProductService } from 'src/app/services';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-collection-add-product-dialog',
@@ -11,6 +12,7 @@ import { ProductService } from 'src/app/services';
 })
 export class CollectionAddProductDialogComponent implements OnInit 
 {
+  env = environment;
   @Input() selectedCollection; // : ProductVM
   @Input() selectedId: number;
   collectionName: string;

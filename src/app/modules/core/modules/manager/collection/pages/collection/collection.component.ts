@@ -3,6 +3,7 @@ import { CollectionVM } from 'src/app/view-models';
 import { CollectionService } from 'src/app/services';
 import { NbDialogService } from "@nebular/theme";
 import { CollectionCreateDialogComponent, CollectionAddProductDialogComponent } from "../../components";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-collection',
@@ -11,6 +12,7 @@ import { CollectionCreateDialogComponent, CollectionAddProductDialogComponent } 
 })
 export class CollectionComponent implements OnInit
 {
+  env = environment;
   collections: CollectionVM[]= [];
   collectionVs: CollectionVM[]= [];
   selectedCollection: any = null;
