@@ -32,21 +32,21 @@ export class ProductUpdateDialogComponent implements OnInit
     {Id: 4, Name: 'FreeSize'}
   ];
   colors: Color[] = [
-    { Id: 1, Name: 'Red', R: 163, G: 22, B: 33, O: 1},
-    { Id: 2, Name: 'Blue', R: 149, G: 184, B: 209, O: 1},
-    { Id: 3, Name: 'Green', R: 33, G: 137, B: 126, O: 1},
-    { Id: 4, Name: 'Pink', R: 228, G: 217, B: 255, O: 1},
-    { Id: 5, Name: 'Grey', R: 60, G: 73, B: 63, O: 1},
-    { Id: 6, Name: 'Beige', R: 224, G: 214, B: 204, O: 1},
-    { Id: 7, Name: 'Dark Orange', R: 233, G: 78, B: 70, O: 1},
-    { Id: 8, Name: 'Aquamarine', R: 139, G: 221, B: 219, O: 1},
-    { Id: 9, Name: 'Teal', R: 32, G: 90, B: 104, O: 1},
-    { Id: 10, Name: 'White Lemon', R: 237, G: 235, B: 211, O: 1},
-    { Id: 11, Name: 'Dark Yellow', R: 243, G: 193, B: 86, O: 1},
-    { Id: 12, Name: 'Light Brown', R: 177, G: 161, B: 136, O: 1},
-    { Id: 13, Name: 'Dark Blue', R: 32, G: 41, B: 69, O: 1},
-    { Id: 14, Name: 'Dark Green', R: 93, G: 95, B: 84, O: 1},
-    { Id: 15, Name: 'White', R: 244, G: 244, B: 245, O: 1}
+    // { Id: 1, Name: 'Chocolate', R: 163, G: 22, B: 33, O: 1},
+    // { Id: 2, Name: 'Cookies & Cream', R: 149, G: 184, B: 209, O: 1},
+    // { Id: 3, Name: 'Green', R: 33, G: 137, B: 126, O: 1},
+    // { Id: 4, Name: 'Pink', R: 228, G: 217, B: 255, O: 1},
+    // { Id: 5, Name: 'Grey', R: 60, G: 73, B: 63, O: 1},
+    // { Id: 6, Name: 'Beige', R: 224, G: 214, B: 204, O: 1},
+    // { Id: 7, Name: 'Dark Orange', R: 233, G: 78, B: 70, O: 1},
+    // { Id: 8, Name: 'Aquamarine', R: 139, G: 221, B: 219, O: 1},
+    // { Id: 9, Name: 'Teal', R: 32, G: 90, B: 104, O: 1},
+    // { Id: 10, Name: 'White Lemon', R: 237, G: 235, B: 211, O: 1},
+    // { Id: 11, Name: 'Dark Yellow', R: 243, G: 193, B: 86, O: 1},
+    // { Id: 12, Name: 'Light Brown', R: 177, G: 161, B: 136, O: 1},
+    // { Id: 13, Name: 'Dark Blue', R: 32, G: 41, B: 69, O: 1},
+    // { Id: 14, Name: 'Dark Green', R: 93, G: 95, B: 84, O: 1},
+    // { Id: 15, Name: 'White', R: 244, G: 244, B: 245, O: 1}
   ];
   // colorIds: number[] = [1, 3, 4]; // Giả sử   // Làm sao để set đc multi selected colors nhỉ?
   // selectedColor = 1;  // Giả sử
@@ -82,9 +82,9 @@ export class ProductUpdateDialogComponent implements OnInit
     // this.genderService.getAll().then((res: Gender[]) => {
     //   this.genders = res;
     // });
-    // this.colorService.getAll().then((res: Color[]) => {
-    //   this.colors = res;
-    // });
+    this.colorService.getAll().then((res: Color[]) => {
+      this.colors = res;
+    });
 
     /* Note: 
       1. new FormControl("AAAA") (nbInput) hoặc new FormControl(101) (nbInput type="number") hoặc

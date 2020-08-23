@@ -35,7 +35,7 @@ export const environment = {
         main: '/api/Gender/'
       },
       color: {
-        main: '/api/Color/'
+        main: '/api/Smell/'
       },
       deliveryStatus: {
         main: '/api/DeliveryStatus/'
