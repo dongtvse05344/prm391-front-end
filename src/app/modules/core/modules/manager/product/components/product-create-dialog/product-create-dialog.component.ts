@@ -60,7 +60,7 @@ export class ProductCreateDialogComponent implements OnInit
         currentPrice: this.createProductForm.get('currentPrice').value,
         oldPrice: this.createProductForm.get('oldPrice').value,
         isSale: this.createProductForm.get('isSale').value != null ? this.createProductForm.get('isSale').value : false,
-        colorIds: this.createProductForm.get('colorIds').value,
+        smellIds: this.createProductForm.get('colorIds').value,
         genderId: this.createProductForm.get('genderId').value,
         categoryId: this.createProductForm.get('categoryId').value,
         dateSale: new Date(Date.now())

@@ -31,10 +31,10 @@
         </div>  <!-- [ngModel]="selectedProduct.isSale"-->
 
         <div class="form-control-group" style="width: 15em; float: left;">
-          <label class="label" for="cbColor">Color:</label><br>
+          <label class="label" for="cbColor">Smell:</label><br>
           <!-- <ng-template *ngFor="let sc of colorIds">
             <p>{{ sc }}</p> -->
-            <nb-select multiple placeholder="Color" formControlName="colorIds" id="cbColor" 
+            <nb-select multiple placeholder="Smell" formControlName="colorIds" id="cbColor" 
             >  <!--[(selected)]="selectedColor" [ngModel]="sc" [ngModel]="selectedProduct.colorIds"-->
               <nb-option *ngFor="let color of colors" [value]="color.Id">
                 {{ color.Name }}

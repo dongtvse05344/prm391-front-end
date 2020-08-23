@@ -18,7 +18,7 @@ export class ProductCM {
   currentPrice: number;
   oldPrice: number;
   isSale: boolean;
-  colorIds: number[];
+  smellIds: number[];
   genderId: number;
   categoryId: number;
   dateSale: Date;
