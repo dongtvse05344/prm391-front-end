@@ -3,6 +3,7 @@ import { ProductService, CategoryService, ColorService, CollectionService } from
 import { ProductVM, ProductCM, ProductUM, Category, Color, CollectionVM } from 'src/app/view-models';
 import { NbDialogService } from "@nebular/theme";
 import { ProductCreateDialogComponent, ProductUpdateDialogComponent } from "../../components";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product',
