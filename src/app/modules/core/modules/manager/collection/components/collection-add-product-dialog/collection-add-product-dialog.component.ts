@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { CollectionAM, ProductVM } from 'src/app/view-models';
-import { ProductService } from 'src/app/services';
+import { ProductService, CollectionService } from 'src/app/services';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -21,7 +21,7 @@ export class CollectionAddProductDialogComponent implements OnInit
   proIdsSelected: number[] = [];
   productIds: any;
   
-  constructor(private fb: FormBuilder, private productService: ProductService,
+  constructor(private collectionService: CollectionService, private fb: FormBuilder, private productService: ProductService,
               protected dialogRef: NbDialogRef<CollectionAddProductDialogComponent>)
   { }
 
@@ -31,9 +31,18 @@ export class CollectionAddProductDialogComponent implements OnInit
       id: new FormControl(this.selectedId),
       productIds: new FormControl()
     });
-
     this.loadAllProducts();
     this.collectionName = this.selectedCollection.Name;
+    this.productService.getByCollection(this.selectedId).then(
+      (data) => {
+        let ids = data.map(e =>{
+          return e.Id
+        });
+        ids.forEach(e =>{
+          this.initSelectProduct(true, e);
+        })
+      }
+    )
   }
 
   loadAllProducts()
@@ -46,6 +55,25 @@ export class CollectionAddProductDialogComponent implements OnInit
   selectProduct(event, proId)
   {
     let isSelected = event.target.checked;
+    console.log("proId = ", proId);
+    console.log("isChosen = ", isSelected);
+    if (this.proIdsSelected.includes(proId))  // product đã đc add trước đó
+    {
+      if (isSelected === false) // unchecked
+        this.unselectedProduct(proId);
+    }
+    else  // product chưa đc add trước đó
+    {
+      if (isSelected === true) // checked
+        this.proIdsSelected.push(proId);
+    }
+
+    console.log("proIdsSelected = ", this.proIdsSelected);
+    this.addProductForm.get('productIds').setValue(this.proIdsSelected);
+  }
+
+  initSelectProduct(isSelected, proId)
+  {
     console.log("proId = ", proId);
     console.log("isChosen = ", isSelected);
     if (this.proIdsSelected.includes(proId))  // product đã đc add trước đó

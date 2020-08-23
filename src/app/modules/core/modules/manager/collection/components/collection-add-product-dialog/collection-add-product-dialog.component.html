@@ -17,7 +17,7 @@
           <input formControlName="productIds" nbInput fullWidth id="txtProIDs" readonly [ngModel]="productIds">
           <div class="container" style="margin-top: 0.5em;">
             <label class="option_item" *ngFor="let product of products">
-              <input type="checkbox" class="checkbox" (change)="selectProduct($event, product.Id)">
+              <input type="checkbox" [checked]="proIdsSelected.includes(product.Id)"   class="checkbox" (change)="selectProduct($event, product.Id)">
                     <!-- [checked]="selectedPro" (change)="selectedPro = !selectedPro"-->
               <!-- <nb-checkbox (checkedChange)="toggle($event)" class="checkbox"></nb-checkbox> -->
               <div class="option_inner">
