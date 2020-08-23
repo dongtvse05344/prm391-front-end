@@ -1,7 +1,7 @@
 <nb-card status="info" accent="primary">
   <nb-card-header>Update Product Information</nb-card-header>
   <nb-card-body>
-    <form (ngSubmit)="update()" [formGroup]="updateProductForm" aria-labelledby="title">
+    <form *ngIf="updateProductForm" (ngSubmit)="update()" [formGroup]="updateProductForm" aria-labelledby="title">
       <div class="left" style="float: left">
         <div class="form-control-group" id="input-id">
           <label class="label" for="txtId">Id:</label>

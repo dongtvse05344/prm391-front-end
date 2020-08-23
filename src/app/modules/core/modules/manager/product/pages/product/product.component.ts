@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductComponent implements OnInit 
 {
+  env = environment;
   newProduct: ProductCM;
   selectedProduct : any;
   products: ProductVM[] = [];  // All products

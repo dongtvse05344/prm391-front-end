@@ -19,17 +19,14 @@ export class ProductUpdateDialogComponent implements OnInit
 
   // Sao khai báo array dạng này set default selectedCate được mà viết kiểu lấy API lại ko đc nhỉ?
   categories: Category[] = [    // Ko biết có phải do API bất đồng bộ nên nó chạy sau cách này ko
-    {Id: 1, Name: 'Jackets', Logo: 'files/images/categories/jacket.jpg'},
-    {Id: 2, Name: 'Dresses', Logo: 'files/images/categories/dress.jpg'},
-    {Id: 3, Name: 'Jeans', Logo: 'files/images/categories/jean.png'},
-    {Id: 4, Name: 'T-shirts', Logo: 'files/images/categories/t-shirt.png'},
-    {Id: 5, Name: 'Shirts', Logo: 'files/images/categories/shirt.jpg'}
+    // {Id: 1, Name: 'Jackets', Logo: 'files/images/categories/jacket.jpg'},
+    // {Id: 2, Name: 'Dresses', Logo: 'files/images/categories/dress.jpg'},
+    // {Id: 3, Name: 'Jeans', Logo: 'files/images/categories/jean.png'},
+    // {Id: 4, Name: 'T-shirts', Logo: 'files/images/categories/t-shirt.png'},
+    // {Id: 5, Name: 'Shirts', Logo: 'files/images/categories/shirt.jpg'}
   ];
   genders: Gender[] = [
     {Id: 1, Name: 'Male'},
-    {Id: 2, Name: 'Female'},
-    {Id: 3, Name: 'Child'},
-    {Id: 4, Name: 'FreeSize'}
   ];
   colors: Color[] = [
     // { Id: 1, Name: 'Chocolate', R: 163, G: 22, B: 33, O: 1},
@@ -59,32 +56,39 @@ export class ProductUpdateDialogComponent implements OnInit
 
   ngOnInit() 
   {
-    this.updateProductForm = this.fb.group({
-      id: new FormControl(this.selectedProduct.id),
-      name: new FormControl(this.selectedProduct.name),
-      currentPrice: new FormControl(this.selectedProduct.currentPrice),
-      oldPrice: new FormControl(this.selectedProduct.oldPrice),
-      isSale: new FormControl(this.selectedProduct.isSale),
-      colorIds: new FormControl(this.selectedProduct.colorIds),
-      genderId: new FormControl(this.selectedProduct.genderId),
-      categoryId: new FormControl(this.selectedProduct.categoryId),
-      description: new FormControl(this.selectedProduct.description)
-    });
+    
     console.log("Update Dialog: ", this.selectedProduct);
 
 
     // Load all categories into cbCategory
-    // this.categoryService.getAll().then((res: Category[]) => {
-    //   this.categories = res;
-    //   // this.selectedCategory = this.categories[2];    // Giả sử mặc định là Jeans
-    //   // console.log("selectedCategory: ", this.selectedCategory); // Ở đây vẫn lấy đc nhưng lại ko set lên UI đc
-    // });
+    console.log(this.selectedProduct.colorIds)
+    this.categoryService.getAll().then((res: Category[]) => {
+      this.categories = res;
+      this.colorService.getAll().then((res: Color[]) => {
+        this.colors = res;
+        this.colorService.getByProductId(this.selectedProduct.id).then((res : Color[]) => {
+          this.selectedProduct.colorIds = res.map(e => {
+            return e.Id
+          });
+          console.log(res)
+          this.updateProductForm = this.fb.group({
+            id: new FormControl(this.selectedProduct.id),
+            name: new FormControl(this.selectedProduct.name),
+            currentPrice: new FormControl(this.selectedProduct.currentPrice),
+            oldPrice: new FormControl(this.selectedProduct.oldPrice),
+            isSale: new FormControl(this.selectedProduct.isSale),
+            colorIds: new FormControl(this.selectedProduct.colorIds),
+            genderId: new FormControl(this.selectedProduct.genderId),
+            categoryId: new FormControl(this.selectedProduct.categoryId),
+            description: new FormControl(this.selectedProduct.description)
+          });
+        });
+      });
+    });
     // this.genderService.getAll().then((res: Gender[]) => {
     //   this.genders = res;
     // });
-    this.colorService.getAll().then((res: Color[]) => {
-      this.colors = res;
-    });
+    
 
     /* Note: 
       1. new FormControl("AAAA") (nbInput) hoặc new FormControl(101) (nbInput type="number") hoặc
@@ -107,7 +111,7 @@ export class ProductUpdateDialogComponent implements OnInit
         currentPrice: this.updateProductForm.get('currentPrice').value,
         oldPrice: this.updateProductForm.get('oldPrice').value,
         isSale: this.updateProductForm.get('isSale').value != null ? this.updateProductForm.get('isSale').value : false,
-        colorIds: this.updateProductForm.get('colorIds').value,   // Chưa xóa được màu cũ để add màu mới. Hiện tại là nó ghi thêm
+        smellIds: this.updateProductForm.get('colorIds').value,   // Chưa xóa được màu cũ để add màu mới. Hiện tại là nó ghi thêm
         genderId: this.updateProductForm.get('genderId').value,
         categoryId: this.updateProductForm.get('categoryId').value,
         dateSale: new Date(Date.now())  // ngày này đúng ko nhỉ?
@@ -121,4 +125,6 @@ export class ProductUpdateDialogComponent implements OnInit
   {
     this.dialogRef.close();
   }
+
+ 
 }
