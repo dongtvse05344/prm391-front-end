@@ -10,8 +10,8 @@ export const environment = {
   fullname: 'weoz-fullname',
   apiLink: {
     // endPoint: 'http://10.0.2.2:58345',
-    endPoint: 'https://csharp-be.azurewebsites.net',
-    // endPoint: 'https://vianh-cosmetic-store-be.herokuapp.com',
+    // endPoint: 'https://csharp-be.azurewebsites.net',
+    endPoint: 'https://localhost:44392',
     basic: {
       product: {
         main: '/api/Product/Admin/',

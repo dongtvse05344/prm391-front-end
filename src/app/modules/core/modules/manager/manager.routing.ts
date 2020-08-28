@@ -18,6 +18,10 @@ const routes: Routes = [
       path: 'order',
       loadChildren: () => import('src/app/modules/core/modules/manager/order/order.module').then(mod => mod.OrderModule)
     },
+    {
+      path: 'category',
+      loadChildren: () => import('src/app/modules/core/modules/manager/category/category.module').then(mod => mod.CategoryModule)
+    },
 ];
 
 export const ManagerRoutes = RouterModule.forChild(routes);
