@@ -9,9 +9,8 @@ export const environment = {
   roles: 'weoz-role',
   fullname: 'weoz-fullname',
   apiLink: {
-    // endPoint: 'http://10.0.2.2:58345',
+    // endPoint: 'https://localhost:44392',
     endPoint: 'https://prc391be.azurewebsites.net',
-    // endPoint: 'https://vianh-cosmetic-store-be.herokuapp.com',
     basic: {
       product: {
         main: '/api/Product/Admin/',
@@ -29,7 +28,8 @@ export const environment = {
         status: '/api/Order/UpdateStatus'
       },
       category: {
-        main: '/api/Category/'
+        main: '/api/Category/',
+        img: '/api/File/CategoryImage'
       },
       gender: {
         main: '/api/Gender/'

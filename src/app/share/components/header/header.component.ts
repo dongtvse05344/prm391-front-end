@@ -38,11 +38,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   userMenu = [
     {
-      title: 'Profile',
-      link: 'profile',
-      icon: 'person-outline'
-    },
-    {
       title: 'Sign-out',
       link: 'logout',
       icon: 'log-out-outline'

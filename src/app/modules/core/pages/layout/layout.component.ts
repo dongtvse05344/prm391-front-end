@@ -25,6 +25,11 @@ export class LayoutComponent implements OnInit {
       icon: 'credit-card-outline',
       url: '/#/core/manager/order',
     },
+    {
+      title: 'Categories',
+      icon: 'credit-card-outline',
+      url: '/#/core/manager/category',
+    },
   ];
  
   constructor() { }

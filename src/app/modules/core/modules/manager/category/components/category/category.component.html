@@ -1,3 +1,23 @@
-<p>
-  category works!
-</p>
+<input nbInput placeholder="Enter collection's name" #inputSearch status="info" />
+<button nbButton (click)="search(inputSearch.value)" id="btnSearch">Search</button>
+<button nbButton id="btnCreate" (click)="openCreateDialog()" status="basic">
+  <nb-icon icon="plus" status="primary"></nb-icon>
+</button>
+
+<ngx-datatable class='table table-hover material' [columnMode]="'force'" [reorderable]="true" [headerHeight]="50"
+  [footerHeight]="50" [rowHeight]="'auto'" [rows]="categories" [scrollbarH]="true" [selectionType]="'single'" [limit]="10"
+  [messages]="{emptyMessage: 'No collections to show', totalMessage: 'total', selectedMessage: 'selected'}"
+  >
+  <ngx-datatable-column [name]="'Code'" [width]="10" [prop]="'Id'">
+  </ngx-datatable-column>
+  <ngx-datatable-column [name]="'Name'" [width]="80" [prop]="'Name'">
+  </ngx-datatable-column>
+ 
+  
+  <ngx-datatable-column [name]="'Logo'" [width]="120" [prop]="'Logo'">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      <img *ngIf="env" src="{{env.apiLink.endPoint}}/api/File/Image?imageUrl={{value}}" width="150" height="90" />
+    </ng-template>
+  </ngx-datatable-column>
+  
+</ngx-datatable>

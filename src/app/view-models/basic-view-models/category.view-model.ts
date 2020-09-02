@@ -3,3 +3,7 @@ export class Category {
     Name: string;
     Logo: string;
 }
+
+export class CategoryCM {
+    Name: string;
+}
